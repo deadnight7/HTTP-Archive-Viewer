@@ -1,0 +1,41 @@
+<html>
+<head>
+    <script type='text/javascript' src='../scripts/mustache.js'></script>
+    <script type='text/javascript' src='../scripts/jquery.min.js'></script>
+    <script type='text/javascript' src='../scripts/jquery-ui.min.js'></script>
+    <script type='text/javascript' src='../scripts/har-viewer.js'></script>
+    <link rel='stylesheet' href='../css/jquery-ui.css'/>
+    <link rel='stylesheet' href='../css/har-viewer.css'/>
+
+    <script type='text/javascript'>
+
+        $(document).ready(
+            function () {
+            
+            var fileData ;
+            $.get( "./har/softwareishard.com.har", function( data ) {
+                // alert( "Data Loaded: " );
+                fileData = data;
+                var data = fileData;//event.target.result;
+                data = JSON.parse(data);
+                $('#har').HarView();
+                var har = $('#har').data('HarView');
+                har.render(data);
+            });
+
+        });
+    </script>
+</head>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+</style>
+<body>
+        <h1>Performance Report </h1>
+        <h3>Verify Order Report</h3>
+        <br/>
+<div id='har'></div>
+
+</body>
+</html>
